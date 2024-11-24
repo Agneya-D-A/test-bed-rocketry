@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import Chart from 'react-apexcharts';
-import {GraphContext} from '../App';
+import {GraphContext} from '../App'
 import { generateDataArray, generateDataset } from '../util/datasets';
 
 export default function Graph({purpose}){

@@ -1,4 +1,4 @@
-const frontendPort = 5173;
+const frontendPort = 3000;
 const frontendAddress = `http://localhost:${frontendPort}`;
 const backendPort = 3001;;
 const backendAddress = `http://localhost:${backendPort}`;

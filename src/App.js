@@ -1,22 +1,20 @@
 import { useState, createContext, useEffect } from 'react'
 import './App.css'
 import Graph from './components/Graph'
-import axios from 'axios'
 import { LinkedList } from './util/LinkedList';
 import {io, Socket} from 'socket.io-client';
 
 const GraphContext = createContext();
 const backendPort = 3001;
-const backendUrl = `http://localhost/${backendPort}`;
-const frontendUrl = 'http://localhost/5173'
+const backendUrl = `http://localhost:${backendPort}`;
+const frontendUrl = 'http://localhost:3000'
 const maxLength = 10;
 
 export default function App() {
   const [linkedList, updateLinkedList] = useState(new LinkedList(maxLength));
 
   useEffect(()=>{
-    async function getData(){
-    let socket = io(backendUrl);
+    let socket = io(`${backendUrl}`);
     socket.connect();
     socket.on('new_data',data =>{
       console.log(data);
@@ -34,9 +32,6 @@ export default function App() {
       }
     })
     // const data = await JSON.parse(response.data);
-    
-    }
-    getData();
   },[linkedList])
 
   return (
@@ -50,4 +45,4 @@ export default function App() {
   )
 }
 
-module.exports = {GraphContext};
+export {GraphContext};
