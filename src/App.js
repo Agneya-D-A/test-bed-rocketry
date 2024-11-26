@@ -2,7 +2,7 @@ import { useState, createContext, useEffect } from 'react'
 import './App.css'
 import Graph from './components/Graph'
 import { LinkedList } from './util/LinkedList';
-import {io, Socket} from 'socket.io-client';
+import {io} from 'socket.io-client';
 
 const GraphContext = createContext();
 const backendPort = 3001;
@@ -22,8 +22,8 @@ export default function App() {
         const list = new LinkedList(maxLength);
         list.length = prevList.length;
         list.head = prevList.head;
-        this.tail = prevList.tail
-        list.shift(JSON.parse(data));
+        list.tail = prevList.tail
+        list.shift(data);
         return list
       });
 
@@ -36,7 +36,7 @@ export default function App() {
 
   return (
     <GraphContext.Provider value={{linkedList}}>
-      {linkedList.length!=0 &&
+      {linkedList.length!==0 &&
       <div className='app'>
         <Graph purpose='chamberPressure'/>
         <Graph purpose='thrust'/>

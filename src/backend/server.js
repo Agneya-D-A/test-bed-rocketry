@@ -1,3 +1,6 @@
+//Add this line to the package.json of the frontend
+//"proxy":"http://localhost:3001"
+
 const frontendPort = 3000;
 const frontendAddress = `http://localhost:${frontendPort}`;
 const backendPort = 3001;;
