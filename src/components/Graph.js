@@ -6,29 +6,30 @@ import { generateDataArray, generateDataset } from '../util/datasets';
 export default function Graph({purpose}){
 
     const {linkedList} = useContext(GraphContext);
+    const timeArray = linkedList.length > 0? linkedList.map((node)=>node.timeMilliSeconds) : ['failed'];
     const options = {
         markers: {
-            size: 1,
+            size: 2,
         },
-        stroke: {
-            curve: 'stepline',
-        },
-        chart: {
-          id: "basic-bar"
-        },
+        // stroke: {
+        //     curve: 'none',
+        // },   
+        // chart: {
+        //   id: "basic-bar"
+        // },
         xaxis: {
-          // eslint-disable-next-line react/prop-types
-          categories: linkedList.length !== 0? linkedList.map((node)=>node.timeMilliSeconds) : []
+            type: 'category',
+            categories: timeArray
         }
     };
 
     const series = [
-        generateDataset(linkedList, purpose)
+        {...generateDataset(linkedList, purpose)}
     ]
 
     return (
         <div className='graph'>
-            <Chart options={options} series={series} width='300px' type='line'/>
+            <Chart key={JSON.stringify(series)} options={options} series={series} width='300px' type='line'/>
         </div>
     )
 }

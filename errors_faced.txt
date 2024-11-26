@@ -1,0 +1,12 @@
+1. CORS Failed to load resources
+    - You need to add 'proxy' : 'http://localhost:3001' which is the backend server address to the package.json
+    - Also check the address backend you've added in the frontend part. I had done localhost/3000 instead of localhost:3000 and spent
+      2 weeks wondering why my code wouldn't work
+    - Don't forget to do the regular app.use(cors()), and also pass the cors configuration into the server
+
+2. Can't set property of undefined object
+    - Not very common. Just used this.tail instead of list.tail in the useEffect
+
+3. X - axis (timeMilliSeconds) only showed for the first point and was undefined later
+    - It is a bug in ApexCharts. So include a key prop as well to ensure the graph always refreshes.
+    - You don't have to tap into useId and stuff. You can just use JSON.stringify(series) as your series would be different when you update it.

@@ -2,6 +2,7 @@ class Node{
     constructor(object){
         this.thrust = object.thrust;
         this.chamberPressure = object.chamberPressure;
+        this.timeMilliSeconds = object.timeMilliSeconds;
         this.next = null;
     }
 }
@@ -18,17 +19,19 @@ class LinkedList{
         const node  = new Node(object);
         if(this.head==null){
             this.head = node;
-            this.tail = this.head;
+            this.tail = node;
+            this.length = 1;
         }
         else{
             this.tail.next = node;
             this.tail = this.tail.next;
+            this.length += 1;
         }
-        this.length += 1;
+        
     }
 
     pop(){
-        if(this.head==this.tail){
+        if(this.head===this.tail){
             this.head = this.tail = null;
         }
         else{
@@ -38,9 +41,9 @@ class LinkedList{
     }
 
     shift(object){
-        this.push(object);
         if(this.length >= this.maxLength)
             this.pop();
+        this.push(object);
     }
 
     map(callback){
@@ -51,7 +54,6 @@ class LinkedList{
             array.push(node);
             temp = temp.next;
         }
-
         return array;
     }
 }

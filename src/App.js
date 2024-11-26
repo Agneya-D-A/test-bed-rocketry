@@ -15,9 +15,7 @@ export default function App() {
 
   useEffect(()=>{
     let socket = io(`${backendUrl}`);
-    socket.connect();
     socket.on('new_data',data =>{
-      console.log(data);
       updateLinkedList(prevList => {
         const list = new LinkedList(maxLength);
         list.length = prevList.length;
@@ -26,11 +24,11 @@ export default function App() {
         list.shift(data);
         return list
       });
-
-      return () =>{
-        socket.disconnect();
-      }
     })
+
+    return () =>{
+      socket.disconnect();
+    }
     // const data = await JSON.parse(response.data);
   },[linkedList])
 

@@ -34,7 +34,7 @@ const generateDataset = (linkedList,purpose,color='#990022') =>{
         default:
             object = {...template, name: 'You forgot to put name here mate'}
     }
-    
+
     return object;
 }
 
