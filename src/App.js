@@ -36,8 +36,8 @@ export default function App() {
     <GraphContext.Provider value={{linkedList}}>
       {linkedList.length!==0 &&
       <div className='app'>
-        <Graph purpose='chamberPressure'/>
-        <Graph purpose='thrust'/>
+        <Graph purpose='chamberPressure' color="#229945"/>
+        <Graph purpose='thrust' color="#991133"/>
       </div>}
     </GraphContext.Provider>
   )
