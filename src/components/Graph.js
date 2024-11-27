@@ -11,15 +11,39 @@ export default function Graph({purpose, color}){
         markers: {
             size: 2,
         },
-        // stroke: {
-        //     curve: 'none',
-        // },   
+        // height: '350px',
+        stroke: {
+            curve: 'smooth',
+        },   
         // chart: {
         //   id: "basic-bar"
         // },
+        chart: {
+            height: 950,
+            dropShadow: {
+                enabled: true,
+                color: '#000',
+                top: 18,
+                left: 7,
+                blur: 10,
+                opacity: 0.5
+            },
+        },
+        datalabels: {
+            enabled: true
+        },
         xaxis: {
             type: 'category',
-            categories: timeArray
+            categories: timeArray,
+            title: {
+                text: 'time (ms)'
+            }
+        },
+
+        yaxis: {
+            title: {
+                text: purpose === 'chamberPressure'? 'Chamber Pressure (Pa)': 'Thrust (N)'
+            }
         }
     };
 
@@ -29,7 +53,7 @@ export default function Graph({purpose, color}){
 
     return (
         <div className='graph'>
-            <Chart key={JSON.stringify(series)} options={options} series={series} width='300px' type='line'/>
+            <Chart key={JSON.stringify(series)} options={options} series={series} height='400px' width='600px' type='line'/>
         </div>
     )
 }

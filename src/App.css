@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.app{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 500px auto;
+  /* background-color: darkblue; */
+}

@@ -19,7 +19,7 @@ const generateDataset = (linkedList,purpose,color='#990022') =>{
         name: '',
         // data: [30, 40, 45, 50, 49, 60, 70, 91],
         data: linkedList.length !== 0? generateDataArray(linkedList, purpose) : [],
-        color: color
+        color: color,
     }
 
     let object;
