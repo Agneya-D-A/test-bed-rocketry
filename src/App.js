@@ -1,8 +1,9 @@
-import { useState, createContext, useEffect } from 'react'
+import { useState, createContext, useEffect, useRef } from 'react'
 import './App.css'
 import Graph from './components/Graph'
 import { LinkedList } from './util/LinkedList';
 import {io} from 'socket.io-client';
+import Notes from './components/Notes';
 
 const GraphContext = createContext();
 const backendPort = 3001;
@@ -12,10 +13,11 @@ const maxLength = 10;
 
 export default function App() {
   const [linkedList, updateLinkedList] = useState(new LinkedList(maxLength));
+  const socket = useRef(null);
 
   useEffect(()=>{
-    let socket = io(`${backendUrl}`);
-    socket.on('new_data',data =>{
+    socket.current = io(backendUrl);
+    socket.current.on('new_data',data =>{
       updateLinkedList(prevList => {
         const list = new LinkedList(maxLength);
         list.length = prevList.length;
@@ -27,17 +29,18 @@ export default function App() {
     })
 
     return () =>{
-      socket.disconnect();
+      if(socket.current)
+      socket.current.disconnect();
     }
     // const data = await JSON.parse(response.data);
-  },[linkedList])
+  },[])
 
   return (
-    <GraphContext.Provider value={{linkedList}}>
-      {linkedList.length!==0 &&
-      <div className='app'>
+    <GraphContext.Provider value={{linkedList, socket: socket.current}}>
+      {linkedList.length!==0 && <div className='app'>    
         <Graph purpose='chamberPressure' color="#229945"/>
         <Graph purpose='thrust' color="#991133"/>
+        <Notes/>
       </div>}
     </GraphContext.Provider>
   )

@@ -84,6 +84,14 @@ const handleSerialData = async (serialArray) =>{
     console.log(node);
 }
 
+io.on('connection',(socket)=>{
+    console.log('Socket connection');
+
+    socket.on('note_update',data=>{
+        console.log(data);
+    });
+})
+
 //Listening on server
 server.listen(backendPort, 'localhost',() => {
     console.log(`Server listening on port ${backendPort}`);

@@ -10,3 +10,16 @@
 3. X - axis (timeMilliSeconds) only showed for the first point and was undefined later
     - It is a bug in ApexCharts. So include a key prop as well to ensure the graph always refreshes.
     - You don't have to tap into useId and stuff. You can just use JSON.stringify(series) as your series would be different when you update it.
+
+4. socket connected was showing false
+    - Don't keep on creating new sockets each time linked list is updated
+    - the socket.on function should be in a useEffect which just renders once. It will still keep listening for new data
+    - Don't keep disconnecting before the backend has the chance to fetch the data
+
+5. No data logged in the backend
+    - Do not use io.on('note_update') globally
+    - Instead, add it inside io.on('connection',(socket)=>{
+        socket.on('note_update',(data)=>{
+            ...
+        })
+    })

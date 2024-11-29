@@ -58,7 +58,7 @@ const executionStartTime = new Date();
 
 const handleData = async() =>{
     if(i>=6){
-        clearInterval(handleData);
+        clearInterval(intervalId);
         i = 0;
         return;
     }
@@ -78,7 +78,15 @@ const handleData = async() =>{
     io.emit('new_data',{...node});
 }  
 
-setInterval(handleData,3000);
+let intervalId = setInterval(handleData,3000);
+
+io.on('connection',(socket)=>{
+    console.log('Socket connection');
+
+    socket.on('note_update',data=>{
+        console.log(data);
+    });
+})
 
 
 //Listening on server
