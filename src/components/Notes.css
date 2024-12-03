@@ -1,0 +1,14 @@
+.noteForm{
+    grid-column: 1/span 2;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+}
+
+.noteArea{
+    padding-top: 0px;
+    min-width: 400px;
+    min-height: 200px;
+}

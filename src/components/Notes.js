@@ -1,6 +1,7 @@
 import React, { useRef, useState, useContext} from "react";
 import { GraphContext } from "../App";
-import { v4 as uuidv4 } from 'uuid'; 
+import { v4 as uuidv4 } from 'uuid';
+import './Notes.css'; 
 
 export default function Notes(){
     const [noteBody, setNoteBody] = useState("");
@@ -12,7 +13,7 @@ export default function Notes(){
     });
 
     function handleChange(e){
-        const {name, value} = e.target;
+        const {value} = e.target;
         setNoteBody(value);
     }
 
@@ -28,7 +29,7 @@ export default function Notes(){
 
     return (
         <form className="noteForm" onSubmit={handleSubmit}>
-            <textarea value={noteBody} name="note" onChange={handleChange}></textarea>
+            <textarea value={noteBody} name="note" onChange={handleChange} className="noteArea"></textarea>
             <button type="submit">Submit</button>
         </form>
     )

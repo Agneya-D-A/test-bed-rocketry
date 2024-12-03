@@ -17,6 +17,7 @@ const cors = require('cors')
 
 //Model
 const {IncomingData} = require('../models/IncomingData');
+const Note = require('../models/Note');
 
 //Setup server
 const app = express();
@@ -85,6 +86,22 @@ io.on('connection',(socket)=>{
 
     socket.on('note_update',data=>{
         console.log(data);
+        const updateNote = async ()=>{
+            try{
+                const note = await Note.findOne({note_id: data.note_id});
+                note.note = data.note;
+                await note.save();
+            }
+            catch(e){
+                const note = new Note({
+                    note_id: data.note_id,
+                    note: data.note
+                });
+
+                await note.save();
+            }
+        }
+        updateNote();
     });
 })
 
