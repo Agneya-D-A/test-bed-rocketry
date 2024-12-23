@@ -1,11 +1,13 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, screen} = require('electron');
 
 let wind;
 
 function createWindow(){
+
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize
     wind = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: width,
+        height: height,
         icon: 'rocketry_icon.ico',
         webPreferences: {
             nodeIntegration: true,  // For accessing Node.js APIs if needed
