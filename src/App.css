@@ -44,6 +44,6 @@
 .app{
   display: grid;
   grid-template-columns: auto auto;
-  grid-template-rows: 450px 250px;
+  grid-template-rows: 450px 250px auto;
   /* background-color: darkblue; */
 }

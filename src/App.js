@@ -4,6 +4,7 @@ import Graph from './components/Graph'
 import { LinkedList } from './util/LinkedList';
 import {io} from 'socket.io-client';
 import Notes from './components/Notes';
+import OptionsBar from './components/OptionsBar';
 
 const GraphContext = createContext();
 const backendPort = 3001;
@@ -37,11 +38,14 @@ export default function App() {
 
   return (
     <GraphContext.Provider value={{linkedList, socket: socket.current}}>
-      {linkedList.length!==0 && <div className='app'>    
+       <div className='app'>
+       {linkedList.length!==0 && <>    
         <Graph purpose='chamberPressure' color="#229945"/>
         <Graph purpose='thrust' color="#991133"/>
         <Notes/>
-      </div>}
+        </>}
+        <OptionsBar/>
+      </div>
     </GraphContext.Provider>
   )
 }

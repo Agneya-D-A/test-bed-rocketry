@@ -1,0 +1,37 @@
+.options-form{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 10px 40px;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.options-form input{
+    border-radius: 5px;
+}
+
+.optionsSubmit{
+    display: flex;
+    grid-column: 1/span 3;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    justify-self: center;
+}
+
+.options-bar{
+    display: flex;
+    row-gap: 0px;
+    grid-column: 1/span 2;
+    align-items: flex-start;
+    justify-self: center;
+    height: 70px;
+    margin-top: 10px;
+    /* margin-left: 200px;  */
+}
+
+label{
+    font-size: 12px;
+    letter-spacing: 2px;
+}
