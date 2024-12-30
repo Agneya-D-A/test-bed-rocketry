@@ -22,7 +22,7 @@ export default function Graph({purpose, color}){
         chart: {
             height: 950,
             dropShadow: {
-                enabled: true,
+                enabled: false,
                 color: '#000',
                 top: 18,
                 left: 7,

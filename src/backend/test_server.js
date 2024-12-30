@@ -51,14 +51,14 @@ const connectToDatabsase = async () =>{
 connectToDatabsase();
 
 //Test Array
-const sample = [[1,2],[4,2],[3,6],[5,10],[8,11],[-3,-1]]
+const sample = [[117200,0],[117200,410],[124100,420],[124100,420],[117200,420],[117200,420],[0,0]]
 let i=0
 
 //Handle Serial Data
 const executionStartTime = new Date();
 
 const handleData = async() =>{
-    if(i>=6){
+    if(i>=7){
         clearInterval(intervalId);
         i = 0;
         return;
@@ -79,7 +79,7 @@ const handleData = async() =>{
     io.emit('new_data',{...node});
 }  
 
-let intervalId = setInterval(handleData,3000);
+let intervalId = setInterval(handleData,100);
 
 io.on('connection',(socket)=>{
     console.log('Socket connection');
