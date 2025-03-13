@@ -14,7 +14,7 @@ export default function Graph({purpose, color}){
         },
         // height: '350px',
         stroke: {
-            curve: 'smooth',
+            curve: 'straight',
         },   
         // chart: {
         //   id: "basic-bar"

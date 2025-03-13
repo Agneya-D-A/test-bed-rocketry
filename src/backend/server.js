@@ -5,7 +5,7 @@ const frontendPort = 3000;
 const frontendAddress = `http://localhost:${frontendPort}`;
 const backendPort = 3001;;
 let backendAddress = `http://localhost:${backendPort}`;
-let serialPortPath = "COM8/USB/VID_2341&PID_0043/14011";
+let serialPortPath = "COM3/USB/VID_2341&PID_0043/14011";
 let baudRate = 9600;
 let dbConnectionString = "mongodb://localhost:27017/static-fire-test"
 
@@ -62,7 +62,7 @@ function setPort(){
     parser = port.pipe(new ReadLineParser({delimiter: '\r\n'}));
 }
 
-await setPort();
+setPort();
 
 port.on('open', () => {
 console.log('Serial port opened');

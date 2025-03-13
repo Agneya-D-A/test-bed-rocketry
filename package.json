@@ -30,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-electron": "wait-on http://localhost:3000 && electron .",
-    "start-server": "wait-on http://localhost:3000 && node src/backend/test_server.js",
+    "start-server": "wait-on http://localhost:3000 && node src/backend/server.js",
     "dev": "concurrently \"cross-env BROWSER=none npm run start\" \"npm run start-server \" \"npm run start-electron \" "
   },
   "eslintConfig": {
