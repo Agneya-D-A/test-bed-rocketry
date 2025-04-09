@@ -20,6 +20,7 @@ export default function App() {
     socket.current = io(backendUrl);
     socket.current.on('new-data',data =>{
       updateLinkedList(prevList => {
+        // console.log(data);
         const list = new LinkedList(maxLength);
         list.length = prevList.length;
         list.head = prevList.head;

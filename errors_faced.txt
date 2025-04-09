@@ -28,3 +28,5 @@
     - Get ReadLineParser from Socket itself and not some other place.
 
 7. Cannot read properties of undefined (reading 'x'):
+    - module.exports = {Note}; instead of module.exports = Note;
+    - The other error fixed itself somehow lol. the udefined x error

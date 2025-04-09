@@ -82,7 +82,7 @@ const handleSerialData = async (serialArray) =>{
         chamberPressure: serialArray[1]
     }
 
-    io.emit('new-data',JSON.stringify(node));
+    io.emit('new-data',{...node});
     const newDocument = new IncomingData(node);
     await newDocument.save();
     console.log(node);
