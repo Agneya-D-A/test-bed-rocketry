@@ -23,3 +23,8 @@
             ...
         })
     })
+
+6. Some parser error:
+    - Get ReadLineParser from Socket itself and not some other place.
+
+7. Cannot read properties of undefined (reading 'x'):

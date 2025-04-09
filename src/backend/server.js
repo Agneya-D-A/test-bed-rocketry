@@ -5,7 +5,7 @@ const frontendPort = 3000;
 const frontendAddress = `http://localhost:${frontendPort}`;
 const backendPort = 3001;;
 let backendAddress = `http://localhost:${backendPort}`;
-let serialPortPath = "COM3/USB/VID_2341&PID_0043/14011";
+let serialPortPath = "COM5/USB/VID_1A86&PID_7523/6&22A3D4F&0&2";
 let baudRate = 9600;
 let dbConnectionString = "mongodb://localhost:27017/static-fire-test"
 
@@ -48,21 +48,16 @@ const connectToDatabsase = async () =>{
 connectToDatabsase();
 
 //Setup serial data reader
-const {SerialPort, ReadLineParser} = require('serialport');
+const {SerialPort, ReadlineParser} = require('serialport');
+// const { ReadlineParser } = require('@serialport/parser-readline');
 
-let port;
-let parser;
 
-function setPort(){
-    port = new SerialPort({
-        path: serialPortPath,
-        baudRate: baudRate
-    });
-        
-    parser = port.pipe(new ReadLineParser({delimiter: '\r\n'}));
-}
-
-setPort();
+const port = new SerialPort({
+    path: serialPortPath,
+    baudRate: baudRate
+});
+    
+let parser = port.pipe(new ReadlineParser({delimiter: '\r\n'}));
 
 port.on('open', () => {
 console.log('Serial port opened');
@@ -116,14 +111,14 @@ io.on('connection',(socket)=>{
         updateNote();
     });
 
-    socket.on('config_update',data=>{
-        console.log(data);
-        serialPortPath = data.serialPortPath != null ? data.serialPortPath : serialPortPath;
-        baudRate = data.baudRate != null? data.baudRate: baudRate;
-        dbConnectionString = data.dbConnectionString != null? data.dbConnectionString : dbConnectionString;
-        connectToDatabsase();
-        setPort();
-    });
+    // socket.on('config_update',data=>{
+    //     console.log(data);
+    //     serialPortPath = data.serialPortPath != null ? data.serialPortPath : serialPortPath;
+    //     baudRate = data.baudRate != null? data.baudRate: baudRate;
+    //     dbConnectionString = data.dbConnectionString != null? data.dbConnectionString : dbConnectionString;
+    //     connectToDatabsase();
+    //     setPort();
+    // });
 })
 
 //Listening on server
